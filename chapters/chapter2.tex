@@ -1,0 +1,487 @@
+\chapter{羽流红外辐射理论基础}
+固体火箭发动机羽流是一个多组份具有化学反应、多相等特点的复杂流动。推进剂在燃烧室内燃烧产生大量气体和凝聚相颗粒，经过拉瓦尔喷管加速后进入大气中。富燃的燃气与大气中的氧气掺混，产生后燃反应，显著提高流场温度；凝聚相在大气羽流中运动，与气体相互作用。气体和凝聚相颗粒都会产生大量红外辐射。
+
+发动机羽流具有复杂的机构特性，一般由核心区和边界层组成。核心区位于轴线附近，与空气混合较少，边界层位于核心区外围，是发生后燃反应的主要区域。图\ref{fig:constructionofyuliu}表示的是羽流结构示意图。
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figures/constructionofyuliu.jpg}
+	\caption{羽流结构示意图}
+	\label{fig:constructionofyuliu}
+\end{figure}
+\section{流场模型}
+\subsection{流场模型}
+\subsubsection{组份输运模型}
+对于多组份气体，总密度是各组份质量密度之和，总压力是各组份分压之和。方程如下：
+\begin{equation}\left.
+\begin{aligned}
+\rho &=\sum _i\rho_i\\
+  p &=\sum_i p_i 
+\end{aligned}\right\}
+\end{equation}
+除了少数很高的温度或很高的压力情况之外，大多数反应流动中可以认为多份气体混合物及其各组份都服从理想气体的状态关系，即
+\begin{equation}\left.
+\begin{aligned}
+p_i&=\dfrac{\rho_i RT}{M_i}&=n_iRT\\
+p&=\dfrac{\rho RT}{M}&=n_iRT
+\end{aligned}\right\}
+\end{equation}
+多组份气体的定压比热可以通过下式获得：
+\begin{equation}
+c_p=\sum_i Y_i c_{p,i}
+\end{equation}
+\subsubsection{质量守恒方程}
+任何流动都必须满足质量守恒定律。即单位时间内流体微元体中质量的增加，等于同一时间间隔内流入该微元体的净质量。质量守恒方程如下：
+\begin{equation}
+\frac{\partial\rho }{\partial t}+\frac{\partial(\rho u) }{\partial x}+\frac{\partial(\rho v) }{\partial y}+\frac{\partial(\rho w) }{\partial z}=0\label{eq:质量守恒方程}
+\end{equation}
+引入矢量符号$div(\mathbf{a})=\dfrac{\partial a_x}{\partial x}+\dfrac{\partial a_y}{\partial y}+\dfrac{\partial a_z}{\partial z}$,式~\ref{eq:质量守恒方程}写成:
+\begin{equation}
+\frac{\partial\rho }{\partial t}+div(\rho \mathbf{u}) = 0 \label{eq:zlshouhengdinglv}
+\end{equation}
+在式\ref{eq:质量守恒方程}和式\ref{eq:zlshouhengdinglv}中，$\rho$是密度，$t$是时间，$u$是速度矢量，$u$、$v$和$w$是速度矢量在$x$、$y$和$z$方向的分量。
+\subsubsection{ 动量守恒方程}
+微元体中流体的动量对时间的变化率等于外界作用在该微元体上的各种力之和。在$x$、$y$和$z$方向的动量守恒方程：
+\begin{equation}\left.
+\begin{aligned}
+\frac{\partial(\rho u) }{\partial t}+div(\rho u\mathbf{u}) &=-\frac{\partial p  }{\partial x}+\frac{\partial \tau_{xx}  }{\partial x}+\frac{\partial \tau_{yx}  }{\partial y}+\frac{\partial \tau_{zx}  }{\partial z}+F_x\\
+\frac{\partial(\rho v) }{\partial t}+div(\rho v\mathbf{u}) &=-\frac{\partial p  }{\partial y}+\frac{\partial \tau_{xy}  }{\partial x}+\frac{\partial \tau_{yy}  }{\partial y}+\frac{\partial \tau_{zy}  }{\partial z}+F_y\\
+\frac{\partial(\rho w) }{\partial t}+div(\rho w\mathbf{u}) &=-\frac{\partial p  }{\partial z}+\frac{\partial \tau_{xz}  }{\partial x}+\frac{\partial \tau_{yz}  }{\partial y}+\frac{\partial \tau_{zz}  }{\partial z}+F_z
+\end{aligned}\right\}
+\end{equation}\label{eq:dongliangshouheng}
+式\ref{eq:dongliangshouheng}中,$p$是流体微元上的压力；$\tau_{xx}$、$\tau_{xy}$和 $\tau_{xz}$等是因分子粘性作用而产生的作用在微元体表面上的粘性应力$\tau$ 的分量；$F_x$、$F_y$和$F_z$是微元体上的体力。
+\subsubsection{能量守恒方程}
+微元体中能量的增加率等于进入微元体的净热流量加上体力与面力对微元体所做的功。以温度T为变量的能量守恒方程为：
+\begin{equation}
+\frac{\partial\rho T}{\partial t}+\text{div}(\rho u T)=\text{div}(\frac{k}{c_p} \text{grad} T)+S_T
+\end{equation}
+\subsubsection{标准$k-\varepsilon$模型}
+在关于湍动能$k$的方程的基础上，再引入一个关于湍动耗散率$\varepsilon$的方程，行程了$k-\varepsilon$两方程模型。表示湍动耗散率$\varepsilon$的被定义为：
+\begin{equation}
+\varepsilon =\frac{\mu}{\rho} \overline{(\frac{\partial\mu_i'}{\partial x_k}) (\frac{\partial\mu_i'}{\partial x_k})}\label{eq:haosnalv}
+\end{equation}
+湍动粘度$\mu_t$可表示成$k$与$\epsilon$的函数，即：
+\begin{equation}
+\mu_i =\rho C_\mu \dfrac{k^2}{g}\label{eq:ke}
+\end{equation}
+其中，$C_\mu $为经验公式。
+在标准$k-\varepsilon$模型中，$k$与$\epsilon$是两个基本未知量，相对应的输运方程为：
+\begin{equation}
+\dfrac{\partial (\rho k)}{\partial t}+\dfrac{\partial (\rho k\mu_i)}{\partial x_i}=\dfrac{\partial}{\partial x_j}\left[(\mu+\dfrac{\mu_i}{\sigma_k}) \dfrac{\partial k}{\partial x_j}\right]+G_k +G_b -\rho\varepsilon-Y_M +S_k
+\end{equation}
+\begin{equation}
+\dfrac{\partial (\rho \varepsilon)}{\partial t}+\dfrac{\partial (\rho \varepsilon \mu_i)}{\partial x_i}=\dfrac{\partial}{\partial x_j}\left[(\mu+\dfrac{\mu_i}{\sigma_k}) \dfrac{\partial \varepsilon}{\partial x_j}\right]+C_{1\varepsilon}\frac{\varepsilon}{k}(G_k +C_{3\varepsilon}G_b)-C_{2\varepsilon}\rho\frac{\varepsilon^2}{k}+S_\varepsilon
+\end{equation}
+其中，$G_k$是由平均速度梯度引起的湍动能$k$的产生项，为:
+\begin{equation}
+G_k =\mu_i\left(\frac{\partial \mu_i}{\partial x_j} +\frac{\partial \mu_j}{\partial x_i} \right)\frac{\partial \mu_i}{\partial x_j}
+\end{equation}
+$G_b$是由浮力引起的湍动能$k$的产生项，有:
+\begin{equation}
+G_b = \beta g_i \frac{\mu_i}{P r_t}\frac{\partial \rho}{\partial T}
+\end{equation}
+其中，$Pr_t$是湍动普朗特数，可取值为0.85，$g_i$是重力加速度在第$i$方向的分量，$\beta$是热膨胀系数，定义为:
+\begin{equation}
+\beta =-\frac{1}{\rho}\frac{\partial \rho}{\partial T}
+\end{equation}
+$Y_M$代表可压湍流中脉动扩张的贡献，有：
+\begin{equation}
+Y_M =2 \rho \varepsilon M_t^2
+\end{equation}
+其中，$M_t$是湍流马赫数
+
+在标准$k-\varepsilon$模型中，根据实验验证，模型常数$C_{1\varepsilon}$ =1.44，$C_{2\varepsilon}$ =1.92，$C_\mu$=0.09，$\sigma_k$ =1.0，$\sigma_\varepsilon$ =1.3。
+
+\subsection{计算方法}
+在进行流场计算时，采用有限体积法对流场控制方程进行求解；采用一阶迎风格式进行离散；使用基于密度算法的隐式求解器进行求解，湍流模型选用标准k-ε模型，壁面边界采用无滑移壁面边界条件，近壁面湍流计算采用标准壁面函数法处理。
+\section{后燃反应模型}
+\subsection{后燃反应模型}
+固体火箭发动机羽流在进入大气后，与大气中的氧气发生后燃反应，从而导致羽流结构和组份的变化。本文使用Arrhenius定律进行描述后燃反应。对于第r个反应，描述从反应物到生产物变化的化学反应式一般形式为：
+\begin{equation}
+\sum_{i=1}^N v_i^{\prime} M_t \overset{k_f}{\underset{k_b}{\Longleftrightarrow}}\sum_{i=1}^N v_i^{''} M_t
+\end{equation}
+式中，$N$为组份数量；$M_i$为化学组份的标志；$v'_i$、$v''_i$分别为反应物和生成物的化学当量系数；$k_f$、$k_b$分别是正反应和逆反应的反应速度常数。
+
+在第$k$个反应中，组份$i$的生成和消耗的摩尔速率$R_{i,k}$，按照Arrhenius定律可得：
+\begin{equation}
+%R_{i,k} = \Upgamma (v''_{i,k}-v'_{i,k}) \left(k_f \prod_{j=1}^{N} [C_j]^{\eta'_{j,k} -k_b \prod_{j=1}^N[C_j]^{\eta''_{j,k}\right) \label{eq:Arrhenius定律}
+{R_{i,k}} = \Gamma \left( {{{v''}_{i,k}} - {{v'}_{i,k}}} \right)\left( {{k_f}\mathop {\mathop \Pi \limits^N }\limits_{j = 1} {{\left[ {{C_j}} \right]}^{{{\eta '}_{j,k}}}} - {k_b}\mathop {\mathop \Pi \limits^N }\limits_{j = 1} {{\left[ {{C_j}} \right]}^{{{\eta ''}_{j,k}}}}} \right) \label{eq:Arrhenius}
+\end{equation}
+式~\ref{eq:Arrhenius}中, $C_j$为每个反应物或者生成物的摩尔浓度； $\eta'_{j,k}$和$\eta''_{j,k}$ 分别为反应物和生成物的速率指数。$\Upgamma= \sum\limits_{j=1}^{N} \gamma_{j,k} C_j$ 表示三体反应对反应速率的影响， $\gamma_{j,k}$为第$k$反应中$j$组分的三体系数。
+
+正反应速率常数可表示为:
+\begin{equation}
+k_f = A_r T^n e^{-E_r/RT}\label{eq:fyslcs}
+\end{equation}
+
+式~\ref{eq:fyslcs}中，$A_r$为指前因子；$n$为温度指数，$E_r$为反应活化能（\si{\joule\per\mole\per\kelvin}），R为气体常数（\si{\joule\per\mole\kelvin}）。
+
+对于一个化学反应，如果不考虑其可逆反应，则说明其生成物的正向反应速率影响较小，速率指数可以为0；对于基元反应，反应物的速率指数一般等于反应方程式中的化学计量系数。
+
+当需要考虑可逆反应时，逆向反应常数$k_{b,r}$可以根据以下关系从正向反应常数计算：
+\begin{equation}
+K_{b,r} = \frac{k_{f,r}}{K_r}\label{eq:nxfycs}
+\end{equation}
+式中，$K_r$为平衡常数，计算式为:
+\begin{equation}
+{K_r} = \exp \left( {\frac{{\Delta S_r^0}}{R} - \frac{{\Delta H_r^0}}{{RT}}} \right){\bigg( {\frac{{{p_{atm}}}}{{RT}}} \bigg)^{\displaystyle\sum\limits_{r = 1}^{{N_R}} {\left( {{{v''}_{j,r}} - {{v'}_{j,r}}} \right)} }}
+\end{equation}
+其中$p_{atm}$表示大气压力（101325Pa）。指数函数中的项表示吉布斯自由能的变化，各部分按照下式计算：
+\begin{equation}
+\frac{{\Delta S_r^0}}{R} = \sum\limits_{i = 1}^N {\left( {{{v''}_{i,r}} - {{v'}_{i,r}}} \right)\frac{{S_i^0}}{R}}
+\end{equation}
+\begin{equation}
+\frac{{\Delta H_r^0}}{{RT}} = \sum\limits_{i = 1}^N {\left( {{{v''}_{i,r}} - {{v'}_{i,r}}} \right)\frac{{h_i^0}}{{RT}}} 
+\end{equation}
+其中 $S_r^0$和$h_i^0$ 是标准状态的熵和标准状态的焓。
+
+羽流中的后燃反应主要由\ce{H2}和\ce{CO}的氧化反应引起。\ce{H2}/\ce{CO}反应体系在模拟羽流后燃反应中被广泛应用。本文将采用此种体系进行计算，反应机理如表2- 1所示：
+\begin{table}[htbp]
+	\centering
+	\caption{化学反应体系}
+	\begin{tabular}{lll}
+		\toprule
+	 \multicolumn{1}{c}{反应化学式} &  \multicolumn{1}{c}{\si{k_f(mol·cm^{-3}·s^{-1})}} &  \multicolumn{1}{c}{$K_r$} \\
+		\midrule
+		\ce{O +O +M =O2 +M }  & \SI[mode=text]{3.0e-34}{exp(900/T)}          &  \SI[mode=text]{7.1e-26}{exp(59850/T)}\\
+		\ce{O +H +M =OH +M }  & \SI[mode=text]{1.0e-29}{T^{-1}}                &  \SI[mode=text]{8.8e-25}{exp(51610/T)}\\
+		\ce{H +H +M =H2 +M }  & \SI[mode=text]{3.0e-30}{T^{-1}}                &  \SI[mode=text]{3.8e-25}{exp(52560/T)}\\
+		\ce{H +OH +M =H2O +M} & \SI[mode=text]{1.0e-25}{T^{-1}}                &  \SI[mode=text]{8.9e-26}{exp(60180/T)}\\
+		\ce{CO +O +M =CO2 +M} & \SI[mode=text]{7.0e-33}{exp(-2200/T)}        &  \SI[mode=text]{8.5e-27}{exp(62470/T)}\\
+		\ce{H2 +OH=H2O +H }   & \SI[mode=text]{1.9e-15}{exp(-1825/T)}        &  \SI[mode=text]{0.23}{exp(7503/T)}\\
+		\ce{H2 +O=OH +H }     & \SI[mode=text]{3.0e-14}{exp(-4480/T)}        &  \SI[mode=text]{8.9e-26}{exp(60180/T)}\\
+		\ce{O2 +H=OH +O }     & \SI[mode=text]{2.4e-10}{exp(-8250/T)}        &  \SI[mode=text]{.23}{exp(7503/T)}\\
+		\ce{CO + OH = CO2 + H }     & \SI[mode=text]{2.8e-17}{exp(330/T)}          &  \SI[mode=text]{9.6e-3}{exp(10880/T)}\\
+		\ce{OH + OH = H2O + O }     & \SI[mode=text]{1.0e-10}{exp(-550/T)}         &  \SI[mode=text]{.102}{exp(8570/T)}\\
+		\ce{CO + O2 = CO2 + O }     & \SI[mode=text]{4.2e-12}{exp(-2400/T)}        &  \SI[mode=text]{.752}{exp(510/T)}\\
+		\ce{Cl + OH <=> HCl + O }   & \SI[mode=text]{1.6e-10}{exp(-9100/T)}        &  \SI[mode=text]{7.4}{exp(-8050/T)}\\
+		\ce{Cl + H2 <=> HCl + H }   & \SI[mode=text]{1.4e-11}{exp(2130/T)}         &  \SI[mode=text]{1.73}{exp(-8050/T)}\\
+		\bottomrule
+	\end{tabular} 
+\label{tb:hxfytx}
+\end{table}
+\subsection{计算方法}
+使用层流有限速度模型模拟层流反应系统，启动刚性化学反应求解器。根据不同的计算特点，调节相应的参数，改善流场计算稳定性和收敛性。在使用刚性化学反应求解器时，需要设置温度正向速率限制因子、温度时间步长减小因子、最大允许化学反应时间尺度的比值这三个参数。本文对这几项参数采用缺省值，分别为0.002、0.25、0.9。
+\section{颗粒模型}
+为提高推进剂能量，增加密度，抑制不稳定燃烧，需要在推进剂配方中加入铝粉，这使发动机内产生的燃烧产物中有大量凝聚相颗粒。这些颗粒对发动机流场和红外辐射产生重大影响[70]。
+\subsection{颗粒形状}
+对于含有铝粉的推进剂，由于燃烧室温度较高而\ce{Al2O3}的熔点为\SI[mode=text]{2300}{K}左右，因此燃烧室内\ce{Al2O3}难以以固相存在，同时其也在燃烧温度下的蒸汽压力很低，气相含量很少，因此大部分颗粒在燃烧过程中完成了凝聚，在燃烧室中以液滴存在。当颗粒在喷管中运动时，温度会迅速降低到熔点以下，从液相逐渐变为固相。本文中主要是研究固体火箭发动机的外流场，所以在本文中假设\ce{Al2O3}颗粒一直为固相，不存在相变过程。同时，近似认为颗粒在喷管和外流场中都呈均匀球形。
+\subsubsection{尺寸分布}
+由于高速运动的气流对凝聚相Al2O3颗粒的剪切作用，发动机羽流中颗粒的直径小于\SI{10}{\um}~15\SI{10}{\um}。Hermsen通过研究大量的试验数据，总结出羽流\ce{Al2O3}颗粒的平均粒径公式[71]：
+\begin{equation}
+{D_{43}} = 3.63D_t^{0.2932}\left( {1 - \exp \left( { - 0.0008163{C_m}{P_c}\tau } \right)} \right)
+\end{equation}
+其中，$D_{43}$是颗粒平均直径（\si{\um}），$D_t$是喷管喉部直径（inch），$C_m$是100$g$推进剂中铝粉的摩尔含量，$P_c$是燃烧室压强，  $\tau  = {{{\rho _c}{V_c}} \mathord{\left/
+		{\vphantom {{{\rho _c}{V_c}} {\dot m}}} \right.
+		\kern-\nulldelimiterspace} {\dot m}}$ 
+是颗粒在燃烧室中的驻留时间（\si{\ms}），其中ρc是推进剂燃烧一半之后燃气密度，Vc是此时燃烧的容积， 是此时燃气质量流率。
+\ce{Al2O3}颗粒是多种直径组成的颗粒群，本文中使用Rosin-Rammler分布规律求羽流中颗粒的粒径分布情况。公式如下[72]：
+\begin{equation}
+F = 1 - \exp \left[ { - {{\left( {\frac{d}{{{D_{43}}}}} \right)}^n}} \right]
+\end{equation}
+其中，$F$为分布函数，$d$是粒径尺寸，$D_{43}$是平均粒径，$n$是指数系数。
+\subsubsection{受力分析}
+颗粒的作用力平衡方程在笛卡尔坐标系下的形式（$x$方向）为：
+\begin{equation}
+\frac{{d{u_p}}}{{dt}} = {F_D}(u - {u_p}) + \frac{{{g_x}({\rho _p} - \rho )}}{{{\rho _p}}} + {F_x}
+\end{equation}
+其中，$F_D(\mu-\mu_p)$为颗粒的单位质量曳力，其中:
+\begin{equation}
+{F_D} = \frac{{18\mu }}{{{\rho _p}d_p^2}}\frac{{{C_D}{\mathop{\rm Re}\nolimits} }}{{24}}
+\end{equation}
+其中，$u$是流体相速度，$u_p$是颗粒速度，$\mu$是流体动力粘度，$\rho$是流体密度，$\rho_p$是颗粒密度，$d_p$是颗粒直径，$Re$是相对雷诺数，其定义为：
+\begin{equation}
+{\mathop{\rm Re}\nolimits}  \equiv \frac{{\rho {d_p}\left| {{u_p} - u} \right|}}{\mu }
+\end{equation}
+曳力系数$C_D$表达式如下：
+\begin{equation}
+{C_D} = {a_1} + \frac{{{a_2}}}{{{\mathop{\rm Re}\nolimits} }} + \frac{{{a_3}}}{{{\mathop{\rm Re}\nolimits} }}
+\end{equation}
+对于球形颗粒，在一定的雷诺数范围内，上式中的$a_1$,$a_2$2,$a_3$3为常数，$C_D$也可采用如下表达式：
+\begin{equation}
+{C_D} = \frac{{24}}{{{\mathop{\rm Re}\nolimits} }}\left( {1 - {b_1}{{{\mathop{\rm Re}\nolimits} }^{{b_2}}}} \right) + \frac{{{b_3}{\mathop{\rm Re}\nolimits} }}{{{b_4} + {\mathop{\rm Re}\nolimits} }}
+\end{equation}
+其中：
+\begin{equation}
+\left. \begin{array}{l}
+{b_1} = \exp (2.3288 - 6.4581 + 2.4486{\phi ^2})\\
+{b_2} = 0.0964 + 0.5565\phi \\
+{b_3} = \exp (4.905 - 13.8944\phi  + 18.4222{\phi ^2} - 10.2599{\phi ^3})\\
+{b_4} = \exp (1.4681 + 12.2584\phi  - 20.7322{\phi ^2} + 15.8855{\phi ^3})
+\end{array} \right\}
+\end{equation}
+形状系数$phi$定义如下:
+\begin{equation}
+\phi  = \frac{s}{S}
+\end{equation}
+其中，s为与实际颗粒具有相同体积的球形颗粒的表面力，S为实际颗粒的表面积。
+
+除了上述受到的力，颗粒还受到一些其他力：
+
+(1) 热泳力
+
+对于悬浮在具有温度梯度的气体流场中的颗粒，受到一个与温度梯度相反的作用力。这种现象称为热泳。颗粒平衡方程中的其他作用里$F_x$可包含这种热泳力：
+\begin{equation}
+{F_x} =  - {D_{T,P}}\frac{1}{{{m_p}T}}\frac{{\partial T}}{{\partial x}}
+\end{equation}
+其中，${D_{T,P}}$为热泳力系数，采用如下表达式：
+\begin{equation}
+{D_{T,P}} = \frac{{6\pi {d_p}{\mu ^2}{C_s}(K + {C_t}{K_n})}}{{\rho (1 + 3{C_m}{K_n})(1 + 2K + 2{C_t}{K_n})}}
+\end{equation}
+其中，$K_n=2\lambda/d_p$，$\lambda$为气体平均分子自由程，$K=k/k_p$，$k$是基于气体平均动能的气体导热系数，$k_p$为颗粒导热系数，$C_s=1.17$，$C_t=2.18$，$C_m=1.14$，$m_p$为颗粒质量，$T$为当地流体温度，$\mu$为气体动力粘度。
+
+(2) 布朗力
+
+对于亚微观粒子，附加作用力可包括布朗力。布朗力分量幅值为：
+\begin{equation}
+{F_{{b_i}}} = {\zeta _i}\sqrt {\frac{{\pi {S_0}}}{{\Delta t}}} 
+\end{equation}
+其中，${\zeta _i}$是期望值为0、方差为1的独立高斯概率分布随机数。$S_0$表达式如下：
+\begin{equation}
+{S_0} = \frac{{216\nu \sigma T}}{{{\pi ^2}\rho d_p^5{{\left( {\frac{{{\rho _p}}}{\rho }} \right)}^2}{C_c}}}
+\end{equation}
+其中，T为气体的绝对温度，$ν$为气体的运动粘度，$\sigma$为Stefan-Boltzmann常数。
+
+(3) Saffman升力
+
+Saffman升力由横向速度梯度引起。表达式为：
+\begin{equation}
+\vec F = \frac{{2K{\nu ^{1/2}}\rho {d_{ij}}}}{{{\rho _p}{d_p}{{({d_{lk}}{d_{kl}})}^{1/4}}}}(\vec v - {\vec v_p})
+\end{equation}
+\subsubsection{动量和能量交换}
+在对颗粒和气相流场耦合计算中，两者之间必然存在动量和能量交换。图2. 2所示为动量和能量的交换示意图。
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.4\linewidth]{figures/dongliangh}
+	\caption{颗粒相和气相之间动量、能量交换示意图}
+	\label{fig:dongliangh}
+\end{figure}
+当颗粒通过流场单元体时，颗粒相和气相之间的动量交换 可通过颗粒的动量变化来体现，其表达式如下式所示：
+\begin{equation}
+\Delta M = \sum {({F_D}(v - {u_p}) + {F_x})} {\dot m_p}\Delta t
+\end{equation}
+式中 $\dot m_p$为颗粒的质量流率， $\Delta_t$为颗粒通过当前单元体所用的时间，由此得到流场动量守恒方程中 $F_p$的表达式：
+\begin{equation}
+{S_p} = ({m_{pin}} - {m_{pout}})[ - {H_{latref}} + {H_{pyrol}}] - {m_{pout}}\int_{{T_{ref}}}^{{T_{pout}}} {{c_{{p_p}}}dT}  + {m_{pin}}\int_{{T_{ref}}}^{{T_{pin}}} {{c_{{p_p}}}dT}\label{eq:liuchangdongliang}
+\end{equation}
+式中， $m_{pin}$为流入单元体的颗粒质量；$m_{pout}$为流出单元体的颗粒质量；$c_{p_p}$ 为颗粒的定压比热； $H_{latref}$为参考条件下颗粒的潜热；$H_{pyrol}$ 为颗粒的汽化分解时放出的热量。
+\subsection{计算方法}
+颗粒在羽流中的体积分数比较小，本文中使用拉格朗日方法对颗粒的运动过
+程进行跟踪计算。在计算过程中，做如下简化假设：
+\begin{itemize}
+	\item 颗粒为球形，内部不含有空隙，质量分布均匀；
+	\item 不考虑颗粒之间的聚合、颗粒的破裂分解等情况；
+	\item 不考虑颗粒与气相的质量交换;
+	\item 颗粒质量分布服从Rosin-Rammler规律；
+	\item 忽略重力、热泳力、布朗力、Saffman升力的影响。
+\end{itemize}
+对颗粒运动的计算，使用随机游走模型，考虑颗粒与流体的离散涡之间的相互作用。本文中耦合计算颗粒相和气相。首先对气相流场进行计算，收敛得到流场结构；然后在喷管入口处加入固体颗粒，并在一定时间步长和空间步长内计算颗粒的运动轨迹；固体颗粒运动引起质量、动量和能量的变化，把这些变化再次带入到气相流场中，重新计算流场结构，直到气相和颗粒相都达到收敛状态。
+\section{辐射传输模型}
+\subsection{辐射传输模型}
+对于含有颗粒相的羽流，在计算红外辐射时，颗粒的作用和散射作用具有重要的影响，因此应该给予考虑。而气体的散射作用比较小，可以忽略。
+\begin{equation}
+\frac{{dI(\vec r,\vec s)}}{{ds}} + \left( {a + {\sigma _s}} \right)I\left( {\vec r,\vec s} \right) = a{n^2}\frac{{\sigma {T^4}}}{\pi } + \frac{{{\sigma _s}}}{{4\pi }}\int_0^{4\pi } {I\left( {\vec r,\vec s\,'} \right)} \Phi (\vec s,\vec s\,')d\Omega '\label{eq:hongwaifushe}
+\end{equation}
+其中， $\vec{r}$是位置向量；$\vec{s}$ 是方向向量； $\vec s'$ 是散射方向；$s$是行程长度；$a$是吸收系数；$n$是折射系数； $\sigma _s$是散射系数；$\sigma $ 是斯蒂芬-玻尔兹曼常数($5.672×10-8W/m^2-k^4$)；$I$是辐射强度；T是当地温度； $\Phi$是相位函数； 是空间立体角$\Omega '$
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figures/chuangshu}
+	\caption{红外辐射传输示意图}
+	\label{fig:chuangshu}
+\end{figure}
+\subsection{计算方法}
+\subsubsection{气体辐射特性参数}
+在求解红外辐射之前，需要获得气体的辐射特性参数。本文中使用的宽谱带模型，要准确描述气体的计算谱带需要3个参数，包括计算谱带内的平均吸收系数 ，平均谱线密度 ，谱线平均半宽 。在使用HITRAN数据库的基础上，上述三个参数可由Young[73]使用的数值平均方法计算
+\begin{equation}
+\left. \begin{array}{l}
+{{\bar a}_i} = \dfrac{1}{{\Delta {\eta _i}}}\,\sum\limits_{m = 1}^M {S_i^m} \\
+{{\bar b}_i} = \dfrac{1}{M}\sum\limits_{m = 1}^M {b_i^m} \\
+d_i=\cfrac{\vec{a_i} \vec{b_i}}{\left(\dfrac{1}{\Delta\eta_i} \sum\limits_{m=1}^M \sqrt{S_i^m b_i^m}\right)^2}
+%{d_i} = \cfrac{{{{\bar a}_i}{{\bar b}_i}}}{{{{(\cfrac{1}{{\Delta {\eta _i}}}\sum\limits_{m = 1}^M {\sqrt {S_i^mb_i^m} } )}^2}}}
+\end{array} \right\}
+\end{equation}
+其中，$S_i^m$是第$i$光谱区间内第$m$条谱线强度；$b_i^m$是第$i$光谱去内第m条谱线半宽；M是第i光谱区间线总数； $\Delta {\eta _i}$ 是第i光谱区的波数区间。
+对于多组分气体，其微元体内混合气体中的吸收系数由下式计算得出：
+\begin{equation}
+a = \sum\limits_{i = 1}^l {{a_i}} 
+\end{equation}
+其中l为气体组份种数。
+\subsubsection{颗粒辐射特性参数}
+\ce{Al2O3}颗粒的复折射率$m=n-ik$ 的确定是计算颗粒辐射特性参数的关键，其中复折射率的实部n值相对稳定，虚部$k$值则随液相、固相不同有较大变化。对于微米尺寸级的颗粒，实部$n$值对其红外发射能力影响很小，虚部$k$值对颗粒红外发射能力影响较大。
+对于凝相\ce{Al2O3}颗粒来说，可以使用Reed等推荐的复折射率公式:
+\begin{equation}
+\begin{array}{l}
+n = 1.75\cos (6\lambda )\\
+k = 4.66{E_a}^{ - 4}{\lambda ^{1.33}}{T_p}^{1.5}\exp ( - 29420/{T_p})
+\end{array}\label{eq:zheselv}
+\end{equation}
+式中：$\lambda$为入射波长，$T_p$为温度，$E_a$为化学反应活化能，对于\ce{Al2O3}颗粒，活化能通常在(50～60)\si{kcal/mol}，在计算中通常取\SI{55}{kcal/mol}。
+得到了\ce{Al2O3}颗粒的复折射率，即可使用Lorentz-Mie理论计算颗粒的散射系数$\sigma_p$和发射率$\varepsilon_{p,n}$。Lorentz-Mie理论的关键在于使用颗粒的复折射率数据，通过反复迭代得到Mie系数$a_n$和$b_n$，进而计算得到颗粒辐射特性参数。
+\begin{equation}
+{a_n} = \frac{{{\psi _n}(\alpha ){{\psi '}_n}(m\alpha ) - m{{\psi '}_n}(\alpha ){\psi _n}(m\alpha )}}{{{\xi _n}(\alpha ){{\psi '}_n}(m\alpha ) - m{{\xi '}_n}(\alpha ){\psi _n}(m\alpha )}}
+\end{equation}
+\begin{equation}
+{b_n} = \frac{{m{{\psi '}_n}(m\alpha ){\psi _n}(\alpha ) - {\psi _n}(m\alpha ){{\psi '}_n}(\alpha )}}{{m{\xi _n}(\alpha ){{\psi '}_n}(m\alpha ) - {{\xi '}_n}(\alpha ){\psi _n}(m\alpha )}}
+\end{equation}
+式中，$\alpha = \dfrac{2 \pi r}{\lambda}$ 为颗粒的尺寸因子。
+\begin{equation}
+\left. \begin{array}{l}
+{\psi _n}(Z) = {(\frac{{{\rm Z}\pi }}{2})^{1/2}}{J_{n + \frac{1}{2}}}({\rm Z})\\
+{\xi _n}(Z) = {(\frac{{{\rm Z}\pi }}{2})^{1/2}}H_{n + 1/2}^{(2)}({\rm Z})
+\end{array} \right\}
+\end{equation}
+ $Z$可以是 $\alpha$或$m\alpha$ 。$J_{n+\frac{1}{2}}$ 和 $H_{n + 1/2}^{(2)}$分别表示半奇阶的第一类贝赛尔函数和第二类汉克尔函数；$\psi'_n$ 和$\psi'_n$ 为对各自变量的微商。
+
+由式~(\ref{eq:dongliangshouheng})和式~(\ref{eq:hongwaifushe})可以看出，只要推导出 $\psi_n(\alpha)$和$\xi_n(\alpha)$ 的递推公式，就可以求出 $a_n$和$b_n$ 的值。贝赛尔函数和汉克尔函数都满足下面的递推公式：
+\begin{equation}
+{Y_{n + 1}}({\rm Z}) = \frac{{2n}}{{\rm Z}}{Y_n}({\rm Z}) - {Y_{n - 1}}({\rm Z})
+\end{equation}
+\begin{equation}
+{Y'_n}({\rm Z}) = \frac{1}{2}[{Y_{n - 1}}({\rm Z}) - {Y_{n + 1}}({\rm Z})]
+\end{equation}
+初始条件：
+\begin{equation}
+{\psi _0}({\rm Z}) = \sin {\rm Z}
+\end{equation}
+\begin{equation}
+{\psi _{ - 1}}({\rm Z}) = \cos {\rm Z}
+\end{equation}
+\begin{equation}
+{\xi _0}({\rm Z}) = \sin {\rm Z} + i\cos {\rm Z}
+\end{equation}
+\begin{equation}
+{\xi _{ - 1}}({\rm Z}) = \cos {\rm Z} + i\sin {\rm Z}
+\end{equation}
+即可以求出Mie系数 $a_n$和$b_n$  的值，代入下式求得颗粒的散射因子$Q_s$ 和$Q_e$衰减因子 ：
+\begin{equation}
+\left. \begin{array}{l}
+{Q_s} = \frac{2}{{{\alpha ^2}}}\sum\limits_{n = 1}^\infty  {(2n + 1)[{{\left| {{a_n}} \right|}^2} + {{\left| {{b_n}} \right|}^2}]} \\
+{Q_e} = \frac{2}{{{\alpha ^2}}}\sum\limits_{n = 1}^\infty  {(2n + 1){\mathop{\rm Re}\nolimits} [{a_n} + {b_n}]} 
+\end{array} \right\}
+\end{equation}
+单个颗粒的散射系数和衰减系数由下式计算得到：
+\begin{equation}
+\left. \begin{array}{l}
+{\sigma _{p,n}} = \pi {r^2}{Q_s}\\
+{k_{e,n}} = \pi {r^2}{Q_e}
+\end{array} \right\}
+\end{equation}
+则颗粒的吸收系数为$a_{p,n}=k_{e,n} -\sigma_{p,n}$。
+
+对于单个颗粒，其表面发射率为$\varepsilon_{p,n}$ ，颗粒周围投射辐射源的辐射强度为$I_{p,\lambda}$ ，颗粒与投射辐射源最终达到同一温度，则由能量平衡原理知，颗粒发射的总能量应等于吸收的总能量
+\begin{equation}
+\int_0^\infty  {{I_{p,\lambda }}({a_{p,n}} - } {\varepsilon _{p,n}})d\lambda  = 0
+\end{equation}
+上式成立，则有:
+\begin{equation}
+{\varepsilon _{p,n}} = {a_{p,n}}
+\end{equation}
+\subsubsection{辐射方程计算}
+在通过上述计算得到气体和\ce{Al2O3}颗粒的辐射特性参数后，将之代入辐射传输方程中，使用离散坐标法对羽流红外特性进行求解。离散坐标法是将传输方程转化为一系列偏微分方程组，基于对辐射强度的传播方向进行离散，通过求解覆盖整个$4\pi$空间中的立体角内每个离散方向上的辐射传输方程而得到问题的解。
+
+（一）辐射传输方程的坐标离散
+
+在笛卡尔坐标系中使用离散坐标法，辐射传输方程右端积分项近似由一数值积分代替，并在离散的方向上对辐射传输方程求解，即：
+\begin{equation}
+{\xi ^m}\frac{{\partial I_k^m}}{{\partial x}} + {\eta ^m}\frac{{\partial I_k^m}}{{\partial y}} + {\mu ^m}\frac{{\partial I_k^m}}{{\partial z}} =  - \beta I_k^m + {E_b} + \frac{{{\sigma _p}}}{{4\pi }}[\sum\limits_{l = 1}^{N\Omega } {{w^l}I_k^l\Phi _k^{m,l}} ]
+\end{equation}
+式中，辐射传输方向的方向余弦 $\xi ^m$，$\eta ^m$ 、$\mu ^m$ 及积分系数 $W_i$的取值受一定条件的约束；上角标$l\text{，}m$表示空间方向离散的第$l$个和第$m$个立体角，$l\text{，}m=1\text{，}2\text{，}\cdot\text{，} NQ$,$NQ$ 为$4\pi$空间方向离散的立体角总数； $\Phi _k^{m,l} = {\Phi _k}({\Omega ^m},{\Omega ^k})$为离散后的散射相函数。
+
+用方向矢量$\mathbf{r^m}$定义每个立体角的中心，下标$E\text{，}W\text{，}S\text{，}N\text{，}T\text{，}B$表示与控制体P相邻的各控制体中心节点，下标$e$，$w$，$s$，$n$，$t$，$b$表示控制体$P$的各边界，在如所示的控制体上积分式可表示为:
+\begin{equation}
+\begin{array}{l}
+{\xi ^m}{A_x}(I_{k,e}^m - I_{k,w}^m) + {\eta ^m}{A_y}(I_{k,n}^m - I_{k,s}^m) + {\mu ^m}{A_z}(I_{k,t}^m - I_{k,b}^m) = \\
+- \beta I_{k,P}^m{V_P} + {E_{b,P}}{V_P} + \dfrac{{{\sigma _p}}}{{4\pi }}[\sum\limits_{l = 1}^{N\Omega } {{w^l}I_{k,P}^l\Phi _k^{m,l}} ]{V_P} \label{eq:kongzhitijifeng}
+\end{array}
+\end{equation}
+式中$V_P$为控制体体积，$V_P=A_xA_yA_z$。
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figures/lsihangzuobiaofa}
+	\caption{离散坐标法计算模型}
+	\label{fig:lsihangzuobiaofa}
+\end{figure}
+（二）空间方向离散方式
+
+离散坐标法的基础是离散方向的选择及其相应权值的选取或构造。辐射传输具有方向性，在每个传播方向上使用离散坐标法对辐射传输方程进行离散和求解。空间中某一位置的$4\pi$空间角的每个象限被分割成$N_\theta \times N_\varphi$个被称为控制角辐射立体角$\omega_i$。控制角$\theta$、$\varphi$分别为经纬角，其参考坐标系是全局固定的笛卡尔坐标系。控制角$\theta$,$\varphi$的大小 $\Delta\theta$、$\Delta\varphi$是常数。
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figures/cankaozuobiao}
+	\caption{离散角的参考坐标系}
+	\label{fig:cankaozuobiao}
+\end{figure}
+
+（三）空间坐标离散的差分格式
+
+微元体界面上的辐射强度与微元体中心的辐射强度存在某种关联，构成空间差分格式：
+\begin{equation}
+I_{k,P}^m = {f_x}I_{k,e}^m + (1 - {f_x})I_{k,w}^m = {f_y}I_{k,n}^m + (1 - {f_y})I_{k,s}^m = {f_z}I_{k,t}^m + (1 - {f_z})I_{k,b}^m \label{eq:chafenggeshi}
+\end{equation}
+式中，$f_x$，$f_y$，$f_z$为差分因子。
+
+将上式代入式（~\ref{eq:kongzhitijifeng}），消去下游界面的辐射强度，并对源项做线性化处理，得:
+\begin{equation}
+I_{k,P}^m = \frac{{{\xi ^m}{A_x}{f_x}{f_y}I_{k,w}^m + {\eta ^m}{A_y}{f_z}{f_x}I_{k,s}^m + {\mu ^m}{A_z}{f_x}{f_y}I_{k,b}^m + S_{k,P}^m{f_x}{f_y}{f_z}{V_P}}}{{{\xi ^m}{A_x}{f_x}{f_y} + {\eta ^m}{A_y}{f_z}{f_x} + {\mu ^m}{A_z}{f_x}{f_y} + D_{k,P}^m{f_x}{f_y}{f_z}{V_P}}} \label{eq:xianxinchulixiang}
+\end{equation}
+式中,
+\begin{equation}
+\left. \begin{array}{l}
+D_{k,P}^m = \beta  - \dfrac{{{\sigma _p}}}{{4\pi }}{w^m}\Phi _k^{m,m}\\
+S_{k,P}^m = {E_{b,P}} + \dfrac{{{\sigma _p}}}{{4\pi }}[\sum\limits_{l,l \ne m}^{} {{w^l}I_{k,P}^l\Phi _k^{m,l}} ]
+\end{array} \right\}
+\end{equation}
+这样，辐射传输方程问题的求解就转化成了对式（\ref{eq:chafenggeshi}）、式（\ref{eq:xianxinchulixiang}）和边界条件的计算。对于不同的差分格式，差分因子$f_x，f_y，f_z$的取值有所不同。常见差分格式如下：
+\begin{enumerate}
+	\item[\circle{1}] 阶梯格式
+	\begin{equation}
+	{f_x} = {f_y} = {f_z} = 1.0
+	\end{equation}
+	\item[\circle{2}] 棱形格式
+	\begin{equation}
+	{f_x} = {f_y} = {f_z} = 0.5
+	\end{equation}
+	\item[\circle{3}] 指数格式
+	\begin{equation}
+\left. \begin{array}{l}
+f_{k,x}^m = {[1 - exp( - \tau _{k,x}^m)]^{ - 1}} - {(\tau _{k,x}^m)^{ - 1}}\tau _{k,x}^m = \frac{{D_{k,P}^m\Delta x}}{{\left| {{\xi ^m}} \right|}}\\
+f_{k,y}^m = {[1 - exp( - \tau _{k,y}^m)]^{ - 1}} - {(\tau _{k,y}^m)^{ - 1}}\tau _{k,x}^m = \frac{{D_{k,P}^m\Delta y}}{{\left| {{\eta ^m}} \right|}}\\
+f_{k,z}^m = {[1 - exp( - \tau _{k,z}^m)]^{ - 1}} - {(\tau _{k,z}^m)^{ - 1}}\tau _{k,x}^m = \frac{{D_{k,P}^m\Delta z}}{{\left| {{\mu ^m}} \right|}}
+\end{array} \right\}
+	\end{equation}
+\end{enumerate}
+选定差分格式后，采用逐点推进的方法求解离散坐标方程。对某一辐射传递方向，从其传递方向的上游边界开始，由节点上游界面强度利用式（\ref{eq:xianxinchulixiang}）计算节点处的辐射强度，再由式（\ref{eq:chafenggeshi}）计算节点下游界面的辐射强度，并以此为下一节点的上游界面强度，按此逐点推进。由式（\ref{eq:chafenggeshi}）计算下游界面的强度时，有时会得出负的强度，这时可令其为零，并重新由式（\ref{eq:xianxinchulixiang}）计算节点处的强度。对于一阶迎风格式，下游边界的辐射强度等于中心节点的辐射强度。
+\begin{equation}
+\begin{array}{l}
+I_{k,e}^m = I_{k,P}^m({\xi ^m} \ge 0),I_{k,w}^m = I_{k,P}^m({\xi ^m} < 0)\\
+I_{k,n}^m = I_{k,P}^m({\eta ^m} \ge 0),I_{k,s}^m = I_{k,P}^m({\eta ^m} < 0)\\
+I_{k,t}^m = I_{k,P}^m({\mu ^m} \ge 0),I_{k,b}^m = I_{k,P}^m({\mu ^m} < 0)
+\end{array}
+\end{equation}
+将上式代入式\ref{eq:kongzhitijifeng}，可得
+\begin{equation}
+a_P^mI_{k,P}^m = a_E^mI_{k,e}^m + a_W^mI_{k,w}^m + a_N^mI_{k,n}^m + a_S^mI_{k,s}^m + a_T^mI_{k,t}^m + a_B^mI_{k,b}^m + b_{k,P}^m
+\end{equation}
+其中，
+\begin{equation}
+\begin{array}{l}
+a_E^m = \max [ - {A_x}{\xi ^m},0],a_W^m = \max [{A_x}{\xi ^m},0]\\
+a_N^m = \max [ - {A_y}{\eta ^m},0],a_S^m = \max [{A_y}{\eta ^m},0]\\
+a_T^m = \max [ - {A_z}{\mu ^m},0],a_B^m = \max [{A_z}{\mu ^m},0]
+\end{array}
+\end{equation}
+\begin{equation}
+\begin{array}{l}
+a_P^m = \max [ - {A_x}{\xi ^m},0] + \max [{A_x}{\xi ^m},0] + \max [ - {A_y}{\eta ^m},0] + \max [{A_y}{\eta ^m},0] + \\
+\max [ - {A_z}{\mu ^m},0] + \max [{A_z}{\mu ^m},0] + \beta {V_P}
+\end{array}
+\end{equation}
+\begin{equation}
+b_{k,P}^m = {E_{b,P}}{V_P} + \frac{{{\sigma _p}}}{{4\pi }}[\sum\limits_{l = 1}^{N\Omega } {{w^l}I_{k,P}^l\Phi _k^{m,l}} ]{V_P}
+\end{equation}
+\section{本章小结}
+\begin{itemize}
+	\item 本章总结了流场结构的计算方法，使用组份输运模型和标准$k-\varepsilon$对流场参数分布进行计算。使用吉布斯自由能法对固体火箭发动机推进剂进行热力学计算。考虑后燃反应，使用有限速率化学反应模型模拟后燃反应，启用刚性化学反应求解器，提高反应计算的稳定行。
+	\item 分析羽流中\ce{Al2O3}颗粒，考虑其尺寸分布、形状、受力等，使用离散颗粒模型求解其在羽流中的运动和与气相的相互作用，使用拉格朗日方法跟踪其运动轨迹，使用随机游走模型模拟其受到的羽流脉动影响。
+	\item 将辐射源项引入能量方程，实现耦合求解羽流近场红外辐射特性。使用HITRAN数据库计算气体辐射特性，使用mie散射理论计算颗粒相的辐射特性参数，使用离散坐标法计算辐射传输方程。
+\end{itemize}
+
