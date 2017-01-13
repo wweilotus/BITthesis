@@ -1,0 +1,88 @@
+\documentclass[oneside,master]{BITthesis}
+%\usepackage{stix}
+\usepackage{colortbl}
+\usepackage{tcolorbox}
+
+%\usepackage[backend=biber,style=gb7714-2015]{biblatex}
+%\addbibresource{test.bib}
+\bibliographystyle{GBT7714-2005NLang}
+\zhtitle{固体火箭发动机羽流红外辐射特性研究}
+\entitle{Reaearch on Infrared Radiation Signature of Exhaust Plume from Solid Rocket Motor}
+\zhauthor{  }
+\enauthor{  }
+\zhadvisor{  }
+\enadvisor{  }
+\zhchairman{  }
+\enchairman{  }
+\zhdegree{工程硕士}
+\endegree{Master of Engineering}
+\zhdate{2016年10月9号}
+\endate{ 2016}
+\zhacademy{航空宇航推进理论与工程}
+\enacademy{Aerospace Engineering}
+\zhmajor{航空宇航推进理论与工程}
+\zhschool{北京理工大学}
+\enschool{Beijing Institute of Technology}
+\classified{TQ028.1}
+\udc{540}
+%\secret{公开}
+
+
+\begin{document}
+\makecover
+
+
+
+\input{chapters/abstract}
+\input{chapters/denotation}
+\tableofcontents
+
+\mainmatter
+
+
+
+\input{chapters/chapter1}
+\input{chapters/chapter2}
+%\input{chapters/tcolorbox-example}
+\include{chapters/summary} %% 全文总结
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 附录(章节编号重新计算，使用字母进行编号)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 文后(无章节编号)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% 参考文献
+% 使用 BibTeX
+% 包含参考文献文件.bib
+%	\zihao{5}
+\nocite{*}
+%%	\clearpage
+	\addcontentsline{toc}{chapter}{参考文献} %向目录中添加条目，以章的名义
+	\bibliography{reference/bibtex_database,reference/test}
+
+%\printbibliography
+
+\begin{appendix}
+	
+%\addcontentsline{toc}{chapter}{附录}
+% 附录中编号形式是"A-1"的样子
+\renewcommand\theequation{\Alph{chapter}--\arabic{equation}}
+\renewcommand\thefigure{\Alph{chapter}--\arabic{figure}}
+\renewcommand\thetable{\Alph{chapter}--\arabic{table}}
+\include{chapters/app1} % 更新记录
+\include{chapters/app2} % 麦克斯韦方程
+
+\end{appendix}
+% 发表文章目录
+\backmatter
+\include{chapters/pub}
+
+% 致谢
+\include{chapters/thanks}
+
+\end{document}
